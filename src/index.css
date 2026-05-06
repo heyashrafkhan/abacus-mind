@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --font-fredoka: 'Fredoka', sans-serif;
+  --font-nunito: 'Nunito', sans-serif;
+
+  --color-primary: #4F8CFF;
+  --color-primary-light: #8BB3FF;
+  --color-primary-dark: #2A6AE0;
+  --color-secondary: #FF9F43;
+  --color-secondary-light: #FFBF80;
+  --color-accent-green: #2ECC71;
+  --color-accent-red: #FF6B6B;
+  --color-accent-yellow: #FFD93D;
+  --color-accent-purple: #A855F7;
+  --color-bg-light: #F0F7FF;
+  --color-bg-cream: #FFFBF0;
+  --color-text-dark: #2D3748;
+  --color-text-medium: #4A5568;
+  --color-text-light: #718096;
+  --color-earth-bead: #FF8C42;
+  --color-heaven-bead: #4ECDC4;
+  --color-frame: #8D6E63;
+  --color-rod: #A1887F;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fredoka', sans-serif;
+}
+
+.bead-snap {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Custom scrollbar for kids */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
