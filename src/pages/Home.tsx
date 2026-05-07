@@ -7,7 +7,7 @@ import Abacus from '../components/Abacus';
 export default function Home() {
   const { progress } = useProgress();
 
-  const nextLesson = progress.lessonsProgress;
+  const nextLesson = progress?.lessonsProgress || {};
   const completedCount = Object.values(nextLesson).filter(l => l.completed).length;
   const totalLessons = 6; // For demo
 
@@ -54,10 +54,10 @@ export default function Home() {
 
       {/* Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatCard icon={<Star className="w-6 h-6 text-amber-500" />} label="XP Points" value={progress.xp} color="bg-amber-50 border-amber-200" />
-        <StatCard icon={<Trophy className="w-6 h-6 text-accent-purple" />} label="Level" value={progress.level} color="bg-purple-50 border-purple-200" />
+        <StatCard icon={<Star className="w-6 h-6 text-amber-500" />} label="XP Points" value={progress?.xp || 0} color="bg-amber-50 border-amber-200" />
+        <StatCard icon={<Trophy className="w-6 h-6 text-accent-purple" />} label="Level" value={progress?.level || 1} color="bg-purple-50 border-purple-200" />
         <StatCard icon={<BookOpen className="w-6 h-6 text-primary" />} label="Lessons Done" value={`${completedCount}/${totalLessons}`} color="bg-blue-50 border-blue-200" />
-        <StatCard icon={<BrainCircuit className="w-6 h-6 text-accent-green" />} label="Accuracy" value={`${progress.accuracy}%`} color="bg-green-50 border-green-200" />
+        <StatCard icon={<BrainCircuit className="w-6 h-6 text-accent-green" />} label="Accuracy" value={`${progress?.accuracy || 0}%`} color="bg-green-50 border-green-200" />
       </div>
 
       {/* Continue Learning */}

@@ -21,10 +21,11 @@ export default function Learn() {
 
       {/* Level Tabs */}
       <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-        {levels.map(level => {
-          const isLocked = level.id > progress.level;
-          const isActive = level.id === activeLevel;
-          return (
+      {levels.map(level => {
+        const isLocked = level.id > (progress?.level || 0);
+        const isActive = level.id === activeLevel;
+        return (
+
             <button
               key={level.id}
               onClick={() => !isLocked && setActiveLevel(level.id)}
