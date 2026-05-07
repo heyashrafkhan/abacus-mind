@@ -11,6 +11,7 @@ export default function Learn() {
 
   const levelLessons = getLessonsByLevel(activeLevel);
   const levelInfo = levels.find(l => l.id === activeLevel)!;
+  const userLevel = progress?.level ?? 0;
 
   return (
     <div className="space-y-6">
@@ -22,7 +23,7 @@ export default function Learn() {
       {/* Level Tabs */}
       <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
       {levels.map(level => {
-        const isLocked = level.id > (progress?.level ?? 0);
+        const isLocked = level.id > userLevel;
         const isActive = level.id === activeLevel;
         return (
 

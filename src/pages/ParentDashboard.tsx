@@ -1,4 +1,4 @@
-import { Settings, ShieldCheck, TrendingUp, AlertCircle, Printer } from 'lucide-react';
+import { Printer, Settings, ShieldCheck, TrendingUp, AlertCircle } from 'lucide-react';
 import { useProgress } from '../context/ProgressContext';
 
 export default function ParentDashboard() {

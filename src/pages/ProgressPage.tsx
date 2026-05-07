@@ -14,18 +14,19 @@ const badgesList = [
 
 export default function ProgressPage() {
   const { progress } = useProgress();
+  const progressData = progress ?? null;
 
-  const completedLessons = Object.values(progress?.lessonsProgress ?? {}).filter(l => l.completed).length;
+  const completedLessons = Object.values(progressData?.lessonsProgress ?? {}).filter(l => l.completed).length;
   const totalLessons = lessons.length;
   const completionPercent = Math.round((completedLessons / totalLessons) * 100);
 
   const skills = [
-    { name: 'Addition', value: Math.min(100, (progress?.xp ?? 0) / 5) },
-    { name: 'Subtraction', value: Math.min(100, (progress?.xp ?? 0) / 8) },
-    { name: 'Speed', value: Math.min(100, (progress?.totalProblemsSolved ?? 0) * 3) },
-    { name: 'Mental Math', value: Math.min(100, (progress?.xp ?? 0) / 10) },
-    { name: 'Accuracy', value: progress?.accuracy ?? 0 },
-    { name: 'Consistency', value: Math.min(100, (progress?.streak ?? 0) * 10) },
+    { name: 'Addition', value: Math.min(100, (progressData?.xp ?? 0) / 5) },
+    { name: 'Subtraction', value: Math.min(100, (progressData?.xp ?? 0) / 8) },
+    { name: 'Speed', value: Math.min(100, (progressData?.totalProblemsSolved ?? 0) * 3) },
+    { name: 'Mental Math', value: Math.min(100, (progressData?.xp ?? 0) / 10) },
+    { name: 'Accuracy', value: progressData?.accuracy ?? 0 },
+    { name: 'Consistency', value: Math.min(100, (progressData?.streak ?? 0) * 10) },
   ];
 
   return (
@@ -37,10 +38,10 @@ export default function ProgressPage() {
 
       {/* Hero Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <HeroStat icon={<Trophy className="w-6 h-6 text-accent-purple" />} label="Level" value={progress?.level ?? 1} />
-        <HeroStat icon={<Star className="w-6 h-6 text-amber-500" />} label="XP" value={progress?.xp ?? 0} />
+        <HeroStat icon={<Trophy className="w-6 h-6 text-accent-purple" />} label="Level" value={progressData?.level ?? 1} />
+        <HeroStat icon={<Star className="w-6 h-6 text-amber-500" />} label="XP" value={progressData?.xp ?? 0} />
         <HeroStat icon={<BookOpen className="w-6 h-6 text-primary" />} label="Lessons" value={`${completedLessons}/${totalLessons}`} />
-        <HeroStat icon={<Zap className="w-6 h-6 text-secondary" />} label="Accuracy" value={`${progress?.accuracy ?? 0}%`} />
+        <HeroStat icon={<Zap className="w-6 h-6 text-secondary" />} label="Accuracy" value={`${progressData?.accuracy ?? 0}%`} />
       </div>
 
       {/* Skill Tree */}
@@ -75,7 +76,7 @@ export default function ProgressPage() {
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {badgesList.map(badge => {
-            const earned = progress?.badges.includes(badge.id) ?? false;
+            const earned = progressData?.badges.includes(badge.id) ?? false;
             return (
               <div
                 key={badge.id}
