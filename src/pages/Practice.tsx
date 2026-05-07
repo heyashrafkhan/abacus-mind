@@ -20,7 +20,7 @@ function generateProblem(maxVal: number): Problem {
 }
 
 export default function Practice() {
-  const { addXp, updateAccuracy, incrementProblems, progress } = useProgress();
+  const { addXp, updateAccuracy, incrementProblems } = useProgress();
   const [mode, setMode] = useState<'free' | 'challenge' | 'mental'>('free');
   const [difficulty, setDifficulty] = useState(9); // max digit value
   const [problem, setProblem] = useState<Problem | null>(null);

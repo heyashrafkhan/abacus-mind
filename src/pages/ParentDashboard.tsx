@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { Settings, ShieldCheck, TrendingUp, AlertCircle, Printer } from 'lucide-react';
 import { useProgress } from '../context/ProgressContext';
 
 export default function ParentDashboard() {
   const { progress } = useProgress();
-  const [showPrintPreview, setShowPrintPreview] = useState(false);
 
   const generateProblems = () => {
     const problems = [];
@@ -105,19 +103,19 @@ export default function ParentDashboard() {
         <div className="grid grid-cols-2 gap-4 mb-8">
           <div className="p-4 bg-blue-50 rounded-xl border border-blue-100">
             <span className="text-xs font-bold text-blue-600 uppercase">Current Level</span>
-            <div className="text-3xl font-fredoka text-text-dark">{progress?.level || 1}</div>
-            <div className="text-xs text-blue-400 mt-1">{progress?.xp || 0} total XP</div>
+            <div className="text-3xl font-fredoka text-text-dark">{progress?.level ?? 1}</div>
+            <div className="text-xs text-blue-400 mt-1">{progress?.xp ?? 0} total XP</div>
           </div>
           <div className="p-4 bg-green-50 rounded-xl border border-green-100">
             <span className="text-xs font-bold text-green-600 uppercase">Avg Accuracy</span>
-            <div className="text-3xl font-fredoka text-text-dark">{progress?.accuracy || 0}%</div>
-            <div className="text-xs text-green-400 mt-1">{progress?.totalProblemsSolved || 0} problems</div>
+            <div className="text-3xl font-fredoka text-text-dark">{progress?.accuracy ?? 0}%</div>
+            <div className="text-xs text-green-400 mt-1">{progress?.totalProblemsSolved ?? 0} problems</div>
           </div>
         </div>
 
         <div className="space-y-3">
           <h4 className="text-sm font-bold text-text-medium mb-2">Recent Lessons</h4>
-          {Object.entries(progress?.lessonsProgress || {}).slice(-3).reverse().map(([id, lp]) => (
+          {Object.entries(progress?.lessonsProgress ?? {}).slice(-3).reverse().map(([id, lp]) => (
             <div key={id} className="flex items-center justify-between p-3 border-b border-gray-50 last:border-0">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-accent-green" />
@@ -129,7 +127,7 @@ export default function ParentDashboard() {
               </div>
             </div>
           ))}
-          {Object.keys(progress?.lessonsProgress || {}).length === 0 && (
+          {Object.keys(progress?.lessonsProgress ?? {}).length === 0 && (
             <div className="text-center py-4 text-text-light text-sm italic">No lessons completed yet.</div>
           )}
         </div>

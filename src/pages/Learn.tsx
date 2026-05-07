@@ -22,7 +22,7 @@ export default function Learn() {
       {/* Level Tabs */}
       <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
       {levels.map(level => {
-        const isLocked = level.id > (progress?.level || 0);
+        const isLocked = level.id > (progress?.level ?? 0);
         const isActive = level.id === activeLevel;
         return (
 
@@ -69,7 +69,7 @@ export default function Learn() {
       {/* Lessons List */}
       <div className="space-y-3">
         {levelLessons.map((lesson, idx) => {
-          const lp = progress.lessonsProgress[lesson.id];
+          const lp = progress?.lessonsProgress[lesson.id];
           const isCompleted = lp?.completed;
           return (
             <motion.div

@@ -110,19 +110,6 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const updateActiveProfile = useCallback((updates: Partial<UserProgress>) => {
-    setState(prev => {
-      if (!prev.activeProfileId) return prev;
-      return {
-        ...prev,
-        profiles: {
-          ...prev.profiles,
-          [prev.activeProfileId]: { ...prev.profiles[prev.activeProfileId], ...updates }
-        }
-      };
-    });
-  }, []);
-
   const addXp = useCallback((amount: number) => {
     setState(prev => {
       if (!prev.activeProfileId) return prev;
